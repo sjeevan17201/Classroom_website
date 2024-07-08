@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Material Upload</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            color: #333;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li.active {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 500px;
+        }
+
+        .folder-icon,
+        .screen-icon {
+            margin-right: 10px;
+        }
+
+        .delete-section {
+            width: 138px;
+            height: 37px;
+            border-radius: 8px;
+            background: #5340a6;
+            color: white;
+            font-size: 17px;
+            border: none;
+            margin-left: 317px;
+        }
+
+        .materials-list {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .uploader-section {
+            margin-top: 20px;
+        }
+
+        .material-item {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .delete-button {
+            margin-left: auto;
+            background-color: #ff5656;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .file {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: 6px;
+            width: 390px;
+        }
+
+        .abc {
+            width: 80%;
+            margin-bottom: 15px;
+            margin-top: 20px;
+        }
+
+        .upload {
+            margin-top: 30px;
+        }
+
+        .up {
+            text-align: center;
+            margin-left: 154px;
+            font-size: 25px;
+        }
+
+        .ef {
+            margin-left: 212px;
+            width: 87px;
+            height: 39px;
+            font-size: 20px;
+            border: none;
+            border-radius: 10px;
+            background-color: #dc3545;
+            color: #fff;
+            margin-top: 26px;
+            margin-bottom: -5px;
+        }
+
+        .abcd {
+            margin-left: 214px;
+            width: 82px;
+            height: 31px;
+            background-color: #28a745;
+            border-radius: 12px;
+            border: none;
+            font-size: 16px;
+            color: #fff;
+        }
+
+        .sec {
+            width: 358px;
+            margin-top: 16px;
+            margin-bottom: 50px;
+        }
+
+        hr {
+            border: none;
+            border-top: 3px solid #000;
+        }
+
+        @media (max-width: 600px) {
+            li.active {
+                padding: 10px;
+            }
+
+            .materials-list {
+                padding: 10px;
+            }
+        }
+
+        .announcement-section {
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .announcement-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .material-item {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        #announcement {
+            width: calc(100% - 20px);
+            /* Adjust the width as needed */
+            padding: 8px;
+            margin-top: 8px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Material Upload</h1>
+    <ul>
+        <li class="active">
+            <a id="uploadLink" class="up" onclick="toggleForm()">
+                <i class="fas fa-folder folder-icon"></i>
+                Upload Materials
+            </a>
+            <form action="/upload_material" class="upload" method="post" enctype="multipart/form-data">
+                <label for="announcement">Announcements</label>
+                <textarea name="announcement" id="announcement" required rows="4"></textarea>
+                <div id="fileUploadContainer">
+                    <label for="materialUpload">Select Files:</label>
+                    <input type="file" class="file" name="materialUpload[]" id="materialUpload" accept=".pdf" multiple>
+                </div>
+                <label for="sec">Section/Chapter:</label>
+                <input type="text" class="sec" name="sec" id="sec">
+                <button class="abcd" type="submit">Upload</button>
+            </form>
+            <form action="/logout.ejs" method="get">
+                <button class="ef" type="submit">Logout</button>
+            </form>
+        </li>
+    </ul>
+
+    <div class="materials-list">
+        <h2>Materials List</h2>
+        <% announcements.forEach((announcement, index)=> { %>
+            <div class="announcement-section">
+                <h3 id="announcementText_<%= index %>"></h3>
+                <script>
+                    var announcementText<%= index %> = `<%= announcement.announcement %>`;
+                    var announcementDiv<%= index %> = document.getElementById('announcementText_<%= index %>');
+                    announcementDiv<%= index %>.innerHTML = announcementText<%=index %>.replace(/\n/g, '<br>');
+                </script>
+                <% if (announcement.materials.length> 0) { %>
+                    <% announcement.materials.forEach(material=> { %>
+                        <% if (material.d_name !==null) { %>
+                            <div class="material-item">
+                                <a href="/material/<%= material.d_id %>">
+                                    <i class="fas fa-desktop screen-icon"></i>
+                                    <h4><%= material.d_name %></h4>
+                                    <button class="delete-button" onclick="deleteMaterial(<%= material.d_id %>)">Delete</button>
+                                </a>
+                            </div>
+                        <% } %>
+                    <% }); %>
+                <% } else { %>
+                    <p>No materials available for this announcement.</p>
+                <% } %>
+                <button class="delete-section" onclick="deleteSection('<%= encodeURIComponent(announcement.announcement) %>')">Delete Section</button>
+                <!-- <button class="delete-section" onclick="deleteSection(`${encodeURIComponent(announcement[announcement].replace(/'/g, '\\\''))}`)">Delete Section</button> -->
+
+
+
+            </div>
+        <% }); %>
+        
+                <% if (announcements.length===0) { %>
+                    <div class="no-announcements">
+                        <p>No announcements available.</p>
+                    </div>
+                    <% } %>
+    </div>
+
+
+
+
+    <script>
+        function toggleForm() {
+            const uploadLink = document.getElementById('uploadLink');
+            const li = uploadLink.parentElement;
+            li.classList.toggle('active');
+        }
+
+        function deleteMaterial(materialId) {
+            if (confirm("Are you sure you want to delete this material?")) {
+                fetch(`/delete_material/${materialId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('Material deleted:', data);
+                        document.location.reload();
+                    })
+                    .catch(error => {
+                        console.error('Error deleting material:', error);
+                    });
+            }
+        }
+
+        function deleteSection(announcement) {
+            
+            if (confirm(`Are you sure you want to delete all materials in the section "${announcement}"?`)) {
+                fetch(`/delete_section/${announcement}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        console.log('Section deleted:', data);
+                        document.location.reload();
+                    })
+                    .catch(error => {
+                        console.error('Error deleting section:', error);
+                    });
+            }
+        }
+        
+ 
+
+    </script>
+</body>
+
+
+</html>

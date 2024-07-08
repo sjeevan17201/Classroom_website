@@ -1,0 +1,89 @@
+<!-- views/signup.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+form {
+    width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #343a40;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    color: #343a40;
+}
+
+input[type="file"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #218838;
+}
+a:visited {
+        color: inherit; /* Use the same color as the link */
+        text-decoration: none; /* Remove underline */
+    }
+
+a[href]:visited {
+            color: #007bff; /* Change color to blue */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Sign Up</h1>
+    <p>Download Excel Template:</p>
+    <a href="/download-template?param=teacher">Download Teacher Template</a>
+    <br>
+    <a href="/download-template?param=student">Download Student Template</a>
+    <form action="/register" method="post" enctype="multipart/form-data">
+        <label for="excelFile">Upload Excel File</label>
+        <input type="file" id="excelFile" name="excelFile" accept=".xls, .xlsx" required>
+
+        <button type="submit">Upload</button>
+    </form>
+</body>
+
+</html>

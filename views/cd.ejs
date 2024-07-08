@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            color: #343a40;
+            font-size: 50px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        li {
+            margin: 10px;
+        }
+
+        .folder-container,
+        .file-container {
+            text-align: center;
+        }
+
+        .folder-container form,
+        .file-container a {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .folder-container button,
+        .file-container button {
+            background-color: #007bff;
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+
+
+        .folder-container button:hover,
+        .file-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .folder-icon,
+        .file-icon {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .logout,
+        .reset {
+            display: block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+        }
+
+        .logout {
+            background-color: #dc3545;
+            color: #fff;
+            margin-bottom: 20px;
+            margin-left: 724px;
+            margin-top: 200px;
+        }
+
+        .logout:hover {
+            background-color: #c82333;
+        }
+
+        .reset {
+            background-color: #2a0174;
+            color: #fff;
+            margin-left: 690px;
+        }
+        .wx {
+            width: 141px;
+        }
+
+        .wx,
+        .xy {
+            margin-left: 45px;
+            font-size: 20px;
+            height: 135px;
+            font-size: 22px;
+        }
+
+        .reset:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Welcome <%= pageTitle %>
+    </h1>
+
+    <ul>
+        <% if (mode==='teacher' ) { %>
+            <% for (let i=0; i < classList.length; i++) { %>
+                <li>
+                    <div class="folder-container">
+                        <form action="/views/class.ejs" method="get">
+                            <input type="hidden" name="div" value="<%= classList[i].div %>">
+                            <button class="wx" type="submit">
+                                <i class="fas fa-folder folder-icon"></i><br>
+                                <%= classList[i].div %>
+                            </button>
+                        </form>
+                    </div>
+                </li>
+                <% } %>
+                    <!-- <li>
+                        <div class="file-container">
+                            <a href="/views/cda.ejs">
+                                <button class="xy">
+                                    <i class="fas fa-folder folder-icon"></i><br>
+                                    Attendance
+                                </button>
+                            </a>
+                        </div>
+                    </li> -->
+                    <% } else if (mode==='student'||mode==='admin' ) { %>
+                        <li>
+                            <div class="file-container">
+                                <a href="/views/cdms.ejs?subject=os">
+                                    <button class="xy">
+                                        <i class="fas fa-folder folder-icon"></i><br>
+                                        Operating Systems
+                                    </button>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="file-container">
+                                <a href="/views/cdms.ejs?subject=math">
+                                    <button class="xy">
+                                        <i class="fas fa-folder folder-icon"></i><br>
+                                        Mathematics
+                                    </button>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="file-container">
+                                <a href="/views/cdms.ejs?subject=dsa">
+                                    <button class="xy">
+                                        <i class="fas fa-folder folder-icon"></i><br>
+                                        Data Structures
+                                    </button>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="file-container">
+                                <a href="/views/cdms.ejs?subject=adldco">
+                                    <button class="xy">
+                                        <i class="fas fa-folder folder-icon"></i><br>
+                                        Applied Logic Design
+                                    </button>
+                                </a>
+                            </div>
+                        </li>
+                        <% } %>
+    </ul>
+
+    <form action="/logout.ejs" method="get">
+        <button type="submit" class="logout">Logout</button>
+    </form>
+
+    <form action="/views/reset.ejs" method="get">
+        <button type="submit" class="reset">Reset password</button>
+    </form>
+</body>
+
+</html>

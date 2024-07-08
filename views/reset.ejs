@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Reset</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .pass {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .password-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+            width: 346px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .input-container {
+            text-align: center;
+        }
+
+        .input-container button {
+            padding: 10px 20px;
+            background-color: #2a0174;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .input-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .error-message {
+            color: red;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .success-message {
+            color: green;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="pass">
+        <% if (errorMessage) { %>
+            <p class="error-message">
+                <%= errorMessage %>
+            </p>
+        <% } %>
+
+        <% if (successMessage) { %>
+            <p class="success-message">
+                <%= successMessage %>
+            </p>
+        <% } %>
+    </div>
+    <div class="password-container">
+        <div class="form-container">
+            <form method="POST" action="/reset-password">
+                <h1>Password Reset</h1>
+                <!-- Assuming you have a way to pass the username to the form -->
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" style="width: 330px;" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="oldPassword">Old password</label>
+                    <input type="password" style="width: 330px;" name="oldPassword" id="oldPassword" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="newPassword">New Password:</label>
+                    <input type="password" style="width: 330px;" id="newPassword" name="newPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password:</label>
+                    <input type="password" style="width: 330px;" id="confirmPassword" name="confirmPassword" required>
+                </div>
+                <div class="input-container">
+                    <button type="submit">Reset Password</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

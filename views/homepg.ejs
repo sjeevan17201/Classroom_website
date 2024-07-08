@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classes</title>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            color: #343a40;
+            margin-bottom: 64px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        li {
+            display: inline-block;
+            margin-bottom: 20px;
+            margin-right: 20px;
+            /* Adjust as needed */
+        }
+
+        .folder-btn {
+            text-decoration: none;
+            color: #343a40;
+            font-size: 18px;
+            display: inline-block;
+            transition: color 0.3s;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .folder-btn:hover {
+            color: #28a745;
+        }
+
+        .folder-icon {
+            margin-right: 10px;
+        }
+
+        .logout {
+            background-color: #dc3545;
+            color: #fff;
+        }
+
+        .xy {
+            margin-left: 45px;
+            background-color: #007bff;
+            color: #fff;
+
+            width: 124px;
+            height: 114px;
+            font-size: 22px;
+        }
+
+        .register {
+            background-color: #28a745;
+            color: #fff;
+        }
+        .register,
+        .logout {
+            
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: block;
+            margin: 20px auto;
+        }
+
+        .register:hover,
+        .logout:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>CLASSES</h1>
+
+    <ul>
+        <li>
+            <form action="/views/cd.ejs" method="get">
+                <input type="hidden" name="div" value="CY">
+                <button class="xy" type="submit" class="folder-btn">
+                    <i class="fas fa-folder folder-icon"></i>
+                    CY
+                </button>
+            </form>
+        </li>
+        <li>
+            <form action="/views/cd.ejs" method="get">
+                <input type="hidden" name="div" value="CD">
+                <button class="xy" type="submit" class="folder-btn">
+                    <i class="fas fa-folder folder-icon"></i>
+                    CD
+                </button>
+            </form>
+        </li>
+        <li>
+            <form action="/views/cd.ejs" method="get">
+                <input type="hidden" name="div" value="CSE">
+                <button class="xy" type="submit" class="folder-btn">
+                    <i class="fas fa-folder folder-icon"></i>
+                    CSE
+                </button>
+            </form>
+        </li>
+    </ul>
+
+    <!-- Use a form to generate a GET request -->
+    <form action="/views/userreg.ejs" method="get">
+        <button type="submit" class="register">Register User</button>
+    </form>
+
+    <form action="/logout.ejs" method="get">
+        <button type="submit" class="logout">Logout</button>
+    </form>
+</body>
+
+</html>

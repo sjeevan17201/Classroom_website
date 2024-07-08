@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            color: #343a40;
+            font-size: 50px;
+        }
+
+        .file-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .file-container a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .ab {
+            margin-left: -600px;
+            margin-top: 78px;
+        }
+
+        .bc {
+            margin-top: -205px;
+            margin-left: -10px;
+        }
+
+        .cd {
+            margin-left: 549px;
+        margin-top: -245px;
+        }
+
+        .xy {
+            background-color: #007bff;
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 10px;
+            text-align: center;
+            text-decoration: none;
+            display: flex; /* Ensures the button contents are displayed in a flex container */
+            flex-direction: column; /* Aligns button contents in a column */
+            align-items: center; /* Centers items horizontally */
+            width: 200px;
+            height: 150px;
+            font-size: 25px;
+        }
+
+        .xy:hover {
+            background-color: #0056b3;
+        }
+
+        .folder-icon {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .file-container button i {
+            display: block;
+        }
+    </style>
+
+    
+    
+<body>
+    <h1>Welcome to <%= section %></h1>
+    <div class="file-container">
+        <a class="ab" href="/views/cdm.ejs">
+            <button class="xy">
+                <i class="fas fa-folder folder-icon"></i><br>
+                Materials
+            </button>
+        </a>
+    </div>
+    </li>
+    <div class="file-container">
+        <a class="bc" href="/views/attendance.ejs">
+            <button class="xy">
+                <i class="fas fa-folder folder-icon"></i><br>
+                Attendance
+            </button>
+        </a>
+    </div>
+    </li>
+    <div class="file-container">
+        <a class="cd" href="/views/cie.ejs">
+            <button class="xy">
+                <i class="fas fa-folder folder-icon"></i><br>
+                CIE
+            </button>
+        </a>
+    </div>
+    </li>
+</body>
+</html>

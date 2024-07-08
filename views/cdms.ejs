@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Material Upload</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            color: #343a40;
+            font-size: 50px;
+        }
+
+        .materials-list {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .uploader-section {
+            margin-top: 20px;
+        }
+
+        h2 {
+            color: #343a40;
+            font-size: 24px;
+            margin-bottom: 10px;
+            text-align: center;
+            font-size: 30px;
+        }
+
+        h3 {
+            color: #495057;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .material-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .material-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .material-item a {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+        }
+
+        .screen-icon {
+            font-size: 24px;
+            color: #007bff;
+            margin-right: 10px;
+        }
+
+        h4 {
+            margin: 0;
+            color: #343a40;
+            font-size: 18px;
+        }
+
+        .no-materials {
+            text-align: center;
+            color: #6c757d;
+        }
+
+        .no-materials p {
+            margin-top: 20px;
+        }
+
+        .logout {
+            display: block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            background-color: #dc3545;
+            color: #fff;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+
+        p {
+            font-size: 17px;
+        }
+
+        .logout:hover {
+            background-color: #c82333;
+        }
+        .announcement-section {
+            border: 2px solid #007bff; 
+            border-radius: 10px; 
+            padding: 15px; 
+            margin-bottom: 20px; 
+        }
+
+        .announcement-section:last-child {
+            margin-bottom: 0; 
+        }
+
+        .material-item {
+            border: 1px solid #ccc; 
+            border-radius: 5px; 
+            padding: 10px; 
+            margin-bottom: 10px; 
+        }
+
+           
+        </style>
+</head>
+
+<body>
+    <h1>Materials</h1>
+
+    <div class="materials-list">
+        <h2>Materials List</h2>
+        <% announcements.forEach((announcement, index) => { %>
+            <div class="announcement-section">
+                <h3 id="announcementText_<%= index %>"></h3>
+                <script>
+                    var announcementText<%= index %> = `<%= announcement.announcement %>`;
+                    var announcementDiv<%= index %> = document.getElementById('announcementText_<%= index %>');
+                    announcementDiv<%= index %>.innerHTML = announcementText<%= index %>.replace(/\n/g, '<br>');
+                </script>
+                <% if (announcement.materials.length > 0) { %>
+                    <% announcement.materials.forEach(material => { %>
+                        <% if (material.d_name !== null) { %>
+                            <div class="material-item">
+                                <a href="/material/<%= material.d_id %>">
+                                    <i class="fas fa-desktop screen-icon"></i>
+                                    <h4><%= material.d_name %></h4>
+                                </a>
+                            </div>
+                        <% } %>
+                    <% }); %>
+                <% } else { %>
+                    <p>No materials available for this announcement.</p>
+                <% } %>
+            </div>
+        <% }); %>
+        <% if (announcements.length === 0) { %>
+            <div class="no-announcements">
+                <p>No announcements available.</p>
+            </div>
+        <% } %>
+    </div>
+    
+    
+
+    <form action="/logout.ejs" method="get">
+        <button type="submit" class="logout">Logout</button>
+    </form>
+</body>
+
+
+
+
+</html>

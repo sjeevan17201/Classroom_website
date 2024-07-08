@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Material Upload</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: linear-gradient(to bottom right, #0052cc, #ffffff, #e7040f);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+h1 {
+    text-align: center;
+}
+
+.materials-list {
+    margin-top: 20px;
+    text-align: center;
+}
+
+h2 {
+    color: white;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Computer screen styles */
+.fa-file::before {
+    content: '\1F5A5'; /* Unicode character for a desktop computer */
+    font-size: 36px;
+    margin-bottom: 5px;
+}
+
+/* Hover effect for materials */
+a:hover {
+    color: #0052cc;
+}
+
+    </style>
+</head>
+
+<body>
+    <h1>Materials</h1>
+
+    <div class="materials-list">
+        <h2>Materials List</h2>
+
+        <% if (noMaterials==true) { %>
+            <p>No elements to display</p>
+        <% } else { %>
+            <ul>
+                <% for (let material of materials) { %>
+                    <li>
+                        <% console.log("Material ID: ", material.d_id) %>
+                        <a href="/material/<%= material.d_id %>">
+                            <i class="fas fa-file"></i>
+                            <%= material.d_name %>
+                        </a>
+                    </li>
+                <% } %> 
+            </ul>
+        <% } %>
+    </div>
+</body>
+
+
+</html>
